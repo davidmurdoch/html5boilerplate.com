@@ -1,0 +1,95 @@
+ /*
+  * SUIT Components: Bottom
+  * https://github.com/suitcss/components-button
+  */
+
+/* @import "suitcss-components-button"; */
+
+:root {
+    --Button-border-width: 1px;
+    --Button-border-color: rgba(0, 0, 0, 0.3);
+    --Button-color: #fff;
+    --Button-font: 1.5em;
+    --Button-padding: 0.6em 1em;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/*
+ * SUIT Components: Bottom
+ * https://github.com/suitcss/components-button-group
+ */
+
+/* @import "suitcss-components-button-group"; */
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/*
+ * Modifier: default buttons
+ */
+
+.Button--default {
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.Button--default:hover,
+.Button--default:focus,
+.Button--default:active {
+    color: #fff;
+}
+
+
+/* Download button */
+
+.Button--download {
+    background: #D78863;
+    color: #fdfcef;
+    font-size: 1.4em;
+}
+
+.Button--download:hover,
+.Button--download:focus,
+.Button--download:active {
+    opacity: .7;
+}
+
+.Button--download:active {
+    background-color: #cf6a00;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2) inset;
+}
+
+/*
+ * Alternative button
+ */
+
+.Button--alt {
+    background-color: #4A6675;
+    font-size: 1.2em;
+    margin-top: 0.25em;
+}
+
+.Button--alt:hover,
+.Button--alt:focus,
+.Button--alt:active {
+    /* background-color: rgba(68, 89, 101, 1); */
+}
+
+.Button--alt:active {
+    /* background-color: #3f3f3f; */
+}
+
+
+.ButtonGroup-item {
+    display: inline-block;
+    margin: 2.5em 0.5em 0;
+    vertical-align: top;
+}
+
+.Button--last-update {
+    color: #999;
+    display: block;
+    font-size: 0.75em;
+    margin-top: 10px;
+}

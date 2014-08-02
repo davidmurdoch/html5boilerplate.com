@@ -1,0 +1,19 @@
+/** @define Icon; use strict */
+
+.Icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+.Icon--github {
+    background-image: url("../img/github.svg");
+}
+
+.Icon--html5 {
+    background-image: url("../img/html5.svg");
+}
+
+.Icon--stackoverflow {
+    background-image: url("../img/stackoverflow.svg");
+}

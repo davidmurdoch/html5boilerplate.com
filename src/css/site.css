@@ -1,0 +1,103 @@
+/** @define Site; use strict */
+
+.Site-footer {
+    font-size: 1em;
+    padding: 1.5em;
+}
+
+.Site-footer a {
+    color: var(--secundary-link-color);
+}
+
+.Site-logo {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 32px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.Site-nav {
+    list-style-type: none;
+    margin: 7px 0 0;
+}
+
+.Site-nav a {
+    color: #ffa000;
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.Site-nav a:hover,
+.Site-nav a:focus,
+.Site-nav a:active {
+    color: #fff;
+}
+
+.Site-nav--list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Site-nav--list li {
+    display: block;
+    padding: 0.1em;
+    margin: auto;
+    vertical-align: top;
+}
+
+@media (--lg-viewport) {
+    .Site-nav--list li {
+        display: inline-block;
+        margin: 0 0 0 1.5em;
+        padding: 0;
+    }
+}
+
+.Site-nav--list li:first-child {
+    margin-left: 0;
+}
+
+.Site-promo {
+    padding: 2em 0 0.5em;
+}
+
+.Site-promo-description {
+    color: #b2bfc6;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    max-width: 800px;
+    margin: auto;
+}
+
+.Site-section {
+    background: transparent;
+    padding: 3em 0.5em 5em;
+}
+
+.Site-section-x {
+    background: #eaedf1;
+    color: #3e4a53;
+    font-weight: 300;
+}
+
+.Site-section-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.Site-aside {
+    background-color: #DEE2E9;
+    border: 1px solid #ddd;
+    font-size: 1.125em;
+    padding: 1em 0;
+}
+
+ .Site-in-the-wild {
+    font-size: 1.25em;
+    margin: 0 auto;
+    max-width: 720px;
+}

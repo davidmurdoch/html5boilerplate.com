@@ -1,0 +1,33 @@
+/* https://github.com/suitcss/components-grid */
+
+:root {
+    --Grid-font-size: 1rem;
+    --Grid-gutter-size: 2em;
+}
+
+.Grid--withGutter > .Grid-cell {
+    padding-bottom: 1em;
+}
+
+.Grid--withGutter > .Grid-cell p {
+    /* border: 1px solid #f0f; */
+}
+
+@media (--lg-viewport) {
+    .Grid--withGutter > .Grid-cell {
+        /* padding-bottom: 1em; */
+    }
+}
+
+/*  */
+/* html { */
+/*     animation: 20s slideBg infinite linear; */
+/* } */
+/* @keyframes slideBg { */
+/*     0% { */
+/*         background-position: 0 0; */
+/*     } */
+/*     100% { */
+/*         background-position: 864px 324px; */
+/*     } */
+/* } */

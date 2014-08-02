@@ -1,0 +1,5 @@
+/** @define Star; use strict */
+
+.Star {
+    color: var(--orange-color);
+}

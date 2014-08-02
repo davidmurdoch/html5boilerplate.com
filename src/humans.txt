@@ -1,5 +1,5 @@
-# humanstxt.org/
 # The humans responsible & technology colophon
+# http://humanstxt.org/
 
 # TEAM
 
@@ -20,6 +20,32 @@
 # TECHNOLOGY COLOPHON
 
     CSS3, HTML5
-    Grunt, HTML5 Boilerplate, jQuery, Normalize.css
+    Apache Server Configs, Grunt, jQuery, Normalize.css, SUIT CSS
 
     Source: https://github.com/h5bp/html5boilerplate.com
+
+
+                                /-
+                               +oo//-
+                              :ooo+//:
+                             -ooooo///-
+                             /oooooo//:
+                            :ooooooo+//-
+                           -+oooooooo///-
+           -://////////////+oooooooooo++////////////::
+            :+ooooooooooooooooooooooooooooooooooooo+:::-
+              -/+ooooooooooooooooooooooooooooooo+/::////:-
+                -:+oooooooooooooooooooooooooooo/::///////:-
+                  --/+ooooooooooooooooooooo+::://////:-
+                     -:+ooooooooooooooooo+:://////:--
+                       /ooooooooooooooooo+//////:-
+                      -ooooooooooooooooooo////-
+                      /ooooooooo+oooooooooo//:
+                     :ooooooo+/::/+oooooooo+//-
+                    -oooooo/::///////+oooooo///-
+                    /ooo+::://////:---:/+oooo//:
+                   -o+/::///////:-      -:/+o+//-
+                   :-:///////:-            -:/://
+                     -////:-                 --//:
+                       --                       -:
+

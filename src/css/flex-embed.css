@@ -1,0 +1,40 @@
+/* @import "suitcss-components-flex-embed"; */
+
+.FlexEmbed--youtube {
+    box-shadow: 0 0 5px #000;
+}
+
+:root {
+    --sec: 2s;
+}
+
+.play-btn {
+    background: url("../img/play-btn.svg");
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left:-75px;
+    margin-top:-75px;
+    width: 150px;
+    height: 150px;
+}
+
+
+.FlexEmbed:hover a {
+    background: #f00;
+}
+
+.FlexEmbed:hover .play-btn {
+    fill: #000;
+}
+
+.FlexEmbed:hover .play-btn {
+    transition: all var(--sec);
+    transform: scale(100) ;
+    opacity: 0;
+}
+
+.FlexEmbed:hover  {
+    transition: all var(--sec);
+    box-shadow: 0 0 10px #000;
+}

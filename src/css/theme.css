@@ -1,0 +1,25 @@
+/* Breakpoints */
+
+@custom-media --sm-viewport (max-width:640px);
+@custom-media --md-viewport (min-width:640px) and (max-width:800px);
+@custom-media --lg-viewport (min-width:801px);
+
+/* Fonts */
+
+:root {
+    --main-font-family: 'Open Sans', sans-serif;
+    --main-font-size: 1.15em;
+    --main-line-height: 1.4;
+}
+
+/* Colors */
+
+:root {
+    --main-color: #fff;
+    --main-text-color: #fff;
+    --main-link-color: #069;
+    --main-link-color-hover: #069;
+
+    --secundary-link-color: #ffa000;
+    --orange-color: #e08524;
+}

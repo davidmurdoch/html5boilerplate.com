@@ -2,8 +2,6 @@ var path = require('path');
 
 module.exports = function (grunt) {
 
-    'use strict';
-
     // Load Grunt tasks automatically
     require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
@@ -25,62 +23,72 @@ module.exports = function (grunt) {
         // | Tasks Configurations                                              |
         // ---------------------------------------------------------------------
 
-        autoprefixer: {
-            // In-depth information about the options:
-            // https://github.com/nDmitry/grunt-autoprefixer#options
-            options: {
-                browsers: [ 'last 2 version', 'ie 6', 'ie 7', 'ie 8' ],
-                cascade: true
-            }
-        },
-
         clean: {
-            // List of files that will be removed before the
-            // build process is started
+
+            // List of files that should be removed
+            // before the build process is started
             all: [
                 '.tmp', // used by the `usemin` task
                 '<%= settings.dir.dist %>'
             ],
 
-            // List of files no longer required after the build
-            // process is completed
+            // List of files no longer required
+            // after the build process is completed
             tmp: [
-                '.tmp'  // used by the `usemin` task
+
+                '.tmp', // used by the `usemin` task
+
+                // Since the website has a single page,
+                // and we currently inline all the scripts
+                // and style sheets, the `css` and `js`
+                // directories can be removed
+                '<%= settings.dir.dist %>/css',
+                '<%= settings.dir.dist %>/js'
+
+                // For images, the `imageEmbed` task will
+                // automatically delete the ones that are
+                // embedded inline, while the `cleanempty`
+                // task will delete the `img` directory if
+                // all images end up being inlined
+                //'<%= settings.dir.dist %>/img'
+
             ]
+
         },
 
-        cssmin: {
-            generated: {
-                // In-depth information about the options:
-                // https://github.com/GoalSmashers/clean-css#how-to-use-clean-css-programmatically
-                options: {
-                    compatibility: 'ie8',
-                    keepSpecialComments: '*'
-                }
-            }
+        cleanempty: {
+            src: '<%= settings.dir.dist %>/**/*'
         },
-
 
         connect: {
+
+            build: {
+                options: {
+                    base: '<%= settings.dir.dist %>'
+                }
+            },
+
+            dev: {
+                options: {
+                    base: '<%= settings.dir.src %>'
+                }
+            },
+
+            // Available options:
+            // https://github.com/gruntjs/grunt-contrib-connect#options
             options: {
-                hostname: 'localhost',  // → Change this to '0.0.0.0' if
-                                        // the server needs to be accessed
-                                        // from outside of the LAN
+                hostname: '0.0.0.0',    // Change this to '0.0.0.0' if the
+                                        // server needs to be accessed from
+                                        // outside of the LAN
                 livereload: 35729,
-                port: 8080              // → 8080 is used as it is the official
+                open: true,
+                port: 8080              // 8080 is used as it is the official
                                         // alternate to port 80 (default port
                                         // for HTTP), and it doesn't require
-                                        // root access:
+                                        // root access
                                         // http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
-            },
-            livereload: {
-                options: {
-                    base: '<%= settings.dir.src %>',
-
-                    // Automatically open the webpage in the default browser
-                    open: true
-                }
             }
+
         },
 
         copy: {
@@ -90,13 +98,15 @@ module.exports = function (grunt) {
                 dot: true,
                 expand: true,
                 src: [
-                    // copy all files
+
+                    // Copy all files
                     '**',
 
-                    // except: files from the `css/` and `js/` directory
+                    // except the files from the `css/` and `js/` directories
                     // (other tasks will handle the copying of these files)
                     '!css/*',
-                    '!img/old/*'
+                    '!js/*'
+
                 ]
             }
         },
@@ -104,27 +114,21 @@ module.exports = function (grunt) {
         filerev: {
             files: {
                 src: [
-                    '<%= settings.dir.dist %>/css/*.css',
-                    '<%= settings.dir.dist %>/img/*.png',
-                    '<%= settings.dir.dist %>/js/*.js',
-                    '!<%= settings.dir.dist %>/js/jquery*.min.js'
+                    '<%= settings.dir.dist %>/img/*.{png,svg}'
+
+                    // Currently all the scripts and style
+                    // sheets are inlined so there is no
+                    // need to revision them
+                    // '<%= settings.dir.dist %>/css/*.css',
+                    // '<%= settings.dir.dist %>/js/*.js',
                 ]
             },
+
+            // Available options:
+            // https://github.com/yeoman/grunt-filerev#options
             options: {
                 algorithm: 'sha1',
-                length: 7
-            }
-        },
-
-        jshint: {
-            files: [
-                'Gruntfile.js',
-                '<%= settings.dir.src %>/js/*.js',
-                '!<%= settings.dir.src %>/js/*.min.js'
-            ],
-            options: {
-                // Search for `.jshintrc` files relative to files being linted
-                jshintrc: true
+                length: 3
             }
         },
 
@@ -132,16 +136,17 @@ module.exports = function (grunt) {
             build: {
                 files: {
                     '<%= settings.dir.dist %>/index.html': '<%= settings.dir.dist %>/index.html'
-                    // DO NOT minify the 404 page! (the page needs to have more
-                    // than 512 bytes in order for IE to display it)
-                    // http://www.404-error-page.com/404-error-page-too-short-problem-microsoft-ie.shtml
+                    // DO NOT minify the 404 page! (the page needs to have
+                    // more than 512 bytes in order for IE to display it:
+                    // http://www.404-error-page.com/404-error-page-too-short-problem-microsoft-ie.shtml)
                 },
 
-                // In-depth information about the options:
-                // http://perfectionkills.com/experimenting-with-html-minifier/#options
+                // Available options:
+                // https://github.com/kangax/html-minifier#options-quick-reference
                 options: {
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,
+                    minifyCSS: true,
                     minifyJS: true,
                     removeAttributeQuotes: true,
                     removeComments: true,
@@ -152,11 +157,43 @@ module.exports = function (grunt) {
             }
         },
 
-        uncss: {
-            // In-depth information about the options:
-            // https://github.com/addyosmani/grunt-uncss#options
+        inline: {
+            build: {
+                // Available options:
+                // https://github.com/chyingp/grunt-inline#options
+                options: {
+                    tag: '' // include all URLs
+                },
+
+                src: '<%= settings.dir.dist%>/index.html',
+                dest: '<%= settings.dir.dist%>/'
+
+            }
+        },
+
+        jshint: {
+            files: [
+                'Gruntfile.js',
+                '<%= settings.dir.src %>/js/*.js'
+            ],
+
+            // Available options:
+            // https://github.com/gruntjs/grunt-contrib-jshint#options
             options: {
-                ignoreSheets: [/fonts.googleapis/]
+                // Search for `.jshintrc` files relative to files being linted
+                jshintrc: true
+            }
+        },
+
+        suitcss: {
+            build: {
+                files: {
+                    // Generate `main.css` from `index.css`
+                    // (the task will resolve all `@import`s from `index.css`
+                    //  and include their content into `main.css`, as well as
+                    //  run the CSS through autoprefixer)
+                    '<%= settings.dir.src %>/css/main.css': '<%= settings.dir.src %>/css/index.css'
+                }
             }
         },
 
@@ -180,7 +217,6 @@ module.exports = function (grunt) {
                             css: [
 
                                 {
-                                    // Note: this task will also take care of concatenation
                                     name: 'uncss',
                                     createConfig: function (context, block) {
 
@@ -189,41 +225,62 @@ module.exports = function (grunt) {
                                         // to take them from
                                         context.outFiles = [ block.dest ];
 
+                                        // Available options:
+                                        // https://github.com/addyosmani/grunt-uncss#options
+
+                                        context.options.generated.options = {
+                                            ignoreSheets: [/fonts.googleapis/]
+                                        };
+
                                         // Task configurations
                                         return {
                                             files: [{
-                                                dest: path.join(context.outDir, block.dest),
-
+                                                dest: path.join('<%= settings.dir.dist %>', block.dest),
                                                 // List of HTML files that UnCSS will use
-                                                // TODO: find a better solution
-                                                src: [ '<%= settings.dir.src %>/index.html' ]
+                                                src: '<%= settings.dir.src %>/index.html'
                                             }]
                                         };
                                     }
                                 },
 
-                                // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
                                 {
-                                    name: 'autoprefixer',
+                                    name: 'imageEmbed',
                                     createConfig: function (context, block) {
 
                                         context.outFiles = [ block.dest ];
 
-                                        // Task configuration
+                                        // Available options:
+                                        // https://github.com/ehynds/grunt-image-embed#optional-configuration-properties
+                                        context.options.generated.options = {
+                                            deleteAfterEncoding: true,
+                                            maxImageSize: 5000  // Only inline small images that end up
+                                                                // having the base64 string smaller than
+                                                                // the specified maximum size (for a small
+                                                                // number of images, this keeps the page
+                                                                // size relatively small, thus, requiring
+                                                                // less additional network round trips to
+                                                                // get the page)
+                                        };
+
+                                        // Task configurations
                                         return {
                                             files: [{
-                                                src: path.join(context.inDir, block.dest),
+                                                src: path.join('<%= settings.dir.dist %>', block.dest),
                                                 dest: path.join(context.outDir, block.dest)
                                             }]
                                         };
+
                                     }
                                 },
 
                                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
                                 'cssmin'
+                            ],
 
+                            js: [
+                                'concat',
+                                'uglifyjs'
                             ]
 
                         },
@@ -234,17 +291,36 @@ module.exports = function (grunt) {
         },
 
         watch: {
-            files: '<%= settings.dir.src %>/**',
+            files: [
+                'Gruntfile.js',
+                '<%= settings.dir.src %>/**/*'
+            ],
+
+            // Available options:
+            // https://github.com/gruntjs/grunt-contrib-watch#settings
             options: {
                 livereload: '<%= connect.options.livereload %>'
             },
+
             scripts: {
                 files: '<%= jshint.files %>',
-                tasks: 'jshint',
                 options: {
                     spawn: false
-                }
+                },
+                tasks: 'jshint'
+            },
+
+            suit: {
+                files: [
+                    '<%= settings.dir.src %>/css/**.css',
+
+                    // `main.css` is automatically generated,
+                    // so it shouldn't be watched for changes!
+                    '!<%= settings.dir.src %>/css/main.css'
+                ],
+                tasks: 'suitcss'
             }
+
         }
 
     });
@@ -255,31 +331,46 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:all',
+        'suitcss',
         'copy',
         'useminPrepare',
+        'concat',
+        'uglify',
         'uncss',
-        'autoprefixer',
+        'imageEmbed',
         'cssmin',
         'filerev',
         'usemin',
+        'inline',
         'htmlmin',
+        'cleanempty',
         'clean:tmp'
     ]);
 
-    // default task
+    // Default task
     // (same as `build`, as `build` will be used more often)
     grunt.registerTask('default', [
         'build'
     ]);
 
     grunt.registerTask('dev', [
-        'connect:livereload',
-        'watch'
+        'suitcss',
+        'test:dev'
     ]);
 
-    grunt.registerTask('test', [
-        'jshint',
-        'build'
-    ]);
+    grunt.registerTask('test', function (target) {
+
+        grunt.task.run('jshint');
+
+        if (target === 'build') {
+            grunt.task.run([target]);
+        }
+
+        grunt.task.run([
+            'connect:' + target,
+            'watch'
+        ]);
+
+    });
 
 };

@@ -6,3 +6,4 @@ before_script:
 branches:
     except:
         - server-content
+        - site-v5

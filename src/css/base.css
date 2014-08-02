@@ -1,0 +1,73 @@
+/*
+ * SUIT base
+ * https://github.com/suitcss/base
+ */
+
+/* @import "suitcss-base"; */
+
+
+/* Base styles that constitute a thin layer on top of Normalize.css. */
+
+
+:root {
+    --base-background: url('../img/bg.png');
+    --base-color: var(--main-text-color);
+    --base-font: var(--main-font-size)/var(--main-line-height) var(--main-font-family);
+    --base-link-color: var(--main-link-color);
+    --base-link-color-hover: var(--main-link-color-hover);
+}
+
+body {
+    background: rgba(56, 93, 113, 0.67);
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: 800;
+    line-height: 1.1em;
+    margin: 0.4em 0.5em 0.5em;
+}
+
+
+@media (--lg-viewport) {
+    h1 {
+        font-size: 3.5em
+    }
+}
+
+
+
+
+h2 {
+    font-size: 1.6em;
+    font-weight: 300;
+    margin: 0.5em 0 1em;
+}
+
+@media (--lg-viewport) {
+    h2 {
+        font-size: 2.5em
+    }
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin: 0 0 0.5em;
+}
+
+@media (--lg-viewport) {
+    h3 {
+        font-size: 1.5em
+    }
+}
+
+img {
+    vertical-align: middle;
+}
+
+p {
+    margin: 0 0 1em;
+    font-size: 0.95em;
+}
