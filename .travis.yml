@@ -1,0 +1,26 @@
+# For more information about the configurations used
+# in this file, please see the Travis CI documentation:
+# http://docs.travis-ci.com
+
+after_success:
+  - npm run update-site
+
+before_script:
+  - travis_retry npm install -g grunt-cli
+
+branches:
+  except:
+    - server-content
+
+env:
+  global:
+    - GH_SERVER_BRANCH: "server-content"
+    - secure: "FpwKgXOGYIAh6LuRWfbX4ezFpIynoEa0kR2zvXMBYgXJzE9DLuavcXkJF8FPGeDmveSCXFdS6QPNhgyQB4fzDG625CdFYxpObJMgRBDoO71LYSpr6NPSsS6n82KU+1gisG1FPqXCGKd9yDekIHNb+AosCbhYEeLfq4yFSaE/J2g="
+
+git:
+  depth: 10
+
+language: node_js
+
+node_js:
+  - "0.10"
